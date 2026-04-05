@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auralux Smart Home</title>
+  <meta name="description" content="Auralux Smart Home brand website featuring connected products, intelligent living scenes, and immersive experience centers." />
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    :root{
+      --bg:#0d1020;
+      --bg-soft:#131735;
+      --card:#171c3f;
+      --card-2:#1c2250;
+      --text:#eef2ff;
+      --muted:#a8b0d4;
+      --primary:#7c5cff;
+      --secondary:#ff5ea8;
+      --accent:#59d0ff;
+      --gold:#ffb86b;
+      --border:rgba(255,255,255,.12);
+      --shadow:0 20px 60px rgba(0,0,0,.35);
+      --radius:24px;
+      --radius-sm:16px;
+      --max:1200px;
+      --nav-h:78px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(124,92,255,.22), transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(255,94,168,.18), transparent 22%),
+        radial-gradient(circle at 70% 70%, rgba(89,208,255,.14), transparent 28%),
+        linear-gradient(160deg, #090b17 0%, #10142b 50%, #0d1020 100%);
+      overflow-x:hidden;
+    }
+
+    img{max-width:100%; display:block}
+    a{text-decoration:none; color:inherit}
+    ul{list-style:none; padding:0; margin:0}
+    .container{width:min(var(--max), calc(100% - 40px)); margin:0 auto}
+    .section{padding:100px 0}
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.05);
+      color:#d8dcff;
+      border-radius:999px;
+      font-size:13px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      backdrop-filter:blur(10px);
+    }
+    .eyebrow i{color:var(--accent)}
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:24px;
+      margin-bottom:36px;
+      flex-wrap:wrap;
+    }
+    .section-head h2{
+      margin:14px 0 0;
+      font-size:clamp(2rem, 3vw, 3.4rem);
+      line-height:1.05;
+      letter-spacing:-.04em;
+    }
+    .section-head p{
+      max-width:540px;
+      color:var(--muted);
+      margin:0;
+      font-size:1rem;
+      line-height:1.8;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:15px 22px;
+      border-radius:999px;
+      font-weight:700;
+      transition:.3s ease;
+      border:1px solid transparent;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg, var(--primary), var(--secondary));
+      color:white;
+      box-shadow:0 14px 34px rgba(124,92,255,.32);
+    }
+    .btn-primary:hover{transform:translateY(-2px); box-shadow:0 20px 44px rgba(124,92,255,.4)}
+    .btn-secondary{
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      border-color:var(--border);
+      backdrop-filter:blur(8px);
+    }
+    .btn-secondary:hover{background:rgba(255,255,255,.09); transform:translateY(-2px)}
+
+    .site-header{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      transition:.35s ease;
+    }
+    .site-header.scrolled{
+      background:rgba(10,12,26,.75);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav{
+      height:var(--nav-h);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:800;
+      letter-spacing:.02em;
+      font-size:1.08rem;
+    }
+    .brand-mark{
+      width:42px;
+      height:42px;
+      border-radius:14px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.18), rgba(255,255,255,.04)),
+        linear-gradient(135deg, var(--primary), var(--secondary));
+      display:grid;
+      place-items:center;
+      box-shadow:0 10px 25px rgba(124,92,255,.24);
+    }
+    .brand-mark i{font-size:1rem}
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      color:#dbe1ff;
+    }
+    .nav-links a{
+      position:relative;
+      font-weight:600;
+      color:#d7defa;
+    }
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-8px;
+      width:0;
+      height:2px;
+      background:linear-gradient(90deg, var(--accent), var(--secondary));
+      transition:.3s ease;
+      border-radius:99px;
+    }
+    .nav-links a:hover::after,
+    .nav-links a.active::after{width:100%}
+
+    .nav-actions{
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .menu-toggle{
+      display:none;
+      width:46px;
+      height:46px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.05);
+      color:var(--text);
+      cursor:pointer;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      padding-top:calc(var(--nav-h) + 30px);
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg, rgba(8,10,24,.82) 0%, rgba(8,10,24,.45) 45%, rgba(8,10,24,.2) 100%),
+        url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      z-index:-2;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:auto 0 0 0;
+      height:180px;
+      background:linear-gradient(to top, var(--bg), transparent);
+      z-index:-1;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:38px;
+      align-items:center;
+    }
+    .hero-copy h1{
+      margin:18px 0 18px;
+      font-size:clamp(3rem, 6vw, 6rem);
+      line-height:.95;
+      letter-spacing:-.06em;
+      max-width:760px;
+    }
+    .hero-copy p{
+      max-width:640px;
+      color:#c7d0f5;
+      font-size:1.08rem;
+      line-height:1.85;
+      margin:0 0 30px;
+    }
+    .hero-cta{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-bottom:34px;
+    }
+
+    .hero-stats{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+    .stat{
+      min-width:160px;
+      padding:18px 18px;
+      border-radius:20px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.1);
+      backdrop-filter:blur(12px);
+      box-shadow:var(--shadow);
+    }
+    .stat h3{
+      margin:0 0 6px;
+      font-size:1.6rem;
+      color:white;
+    }
+    .stat p{
+      margin:0;
+      font-size:.92rem;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .hero-panel{
+      padding:20px;
+      border-radius:32px;
+      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.14);
+      backdrop-filter:blur(14px);
+      box-shadow:var(--shadow);
+    }
+    .scene-card{
+      position:relative;
+      border-radius:28px;
+      overflow:hidden;
+      min-height:520px;
+      background:
+        linear-gradient(to top, rgba(10,12,28,.84), rgba(10,12,28,.18)),
+        url('https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+      display:flex;
+      align-items:flex-end;
+      padding:28px;
+    }
+    .scene-card .floating-ui{
+      position:absolute;
+      top:24px;
+      right:24px;
+      display:grid;
+      gap:12px;
+      width:min(260px, 72%);
+    }
+    .mini-widget{
+      padding:14px 16px;
+      border-radius:18px;
+      background:rgba(14,18,40,.72);
+      border:1px solid rgba(255,255,255,.1);
+      backdrop-filter:blur(12px);
+    }
+    .mini-widget small{
+      color:var(--muted);
+      display:block;
+      margin-bottom:8px;
+    }
+    .temp{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      font-weight:700;
+    }
+    .temp span:last-child{color:var(--gold)}
+    .bars{
+      display:flex;
+      gap:8px;
+      margin-top:10px;
+    }
+    .bars i{
+      flex:1;
+      height:8px;
+      border-radius:999px;
+      background:rgba(255,255,255,.12);
+      overflow:hidden;
+      position:relative;
+    }
+    .bars i::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      width:var(--w, 60%);
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--accent), var(--primary));
+    }
+    .scene-info h3{
+      margin:0 0 10px;
+      font-size:1.7rem;
+    }
+    .scene-info p{
+      margin:0;
+      color:#d5dcfd;
+      line-height:1.75;
+      max-width:430px;
+    }
+
+    .trust-bar{
+      margin-top:-24px;
+      position:relative;
+      z-index:2;
+    }
+    .trust-wrap{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:16px;
+      padding:18px;
+      border-radius:28px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      backdrop-filter:blur(12px);
+      box-shadow:var(--shadow);
+    }
+    .trust-item{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:16px 18px;
+      border-radius:20px;
+      background:rgba(255,255,255,.04);
+    }
+    .trust-item i{
+      width:44px;
+      height:44px;
+      display:grid;
+      place-items:center;
+      border-radius:14px;
+      background:linear-gradient(135deg, rgba(124,92,255,.25), rgba(255,94,168,.2));
+      color:#fff;
+    }
+    .trust-item strong{display:block; margin-bottom:4px}
+    .trust-item span{color:var(--muted); font-size:.92rem}
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:22px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+      transition:.35s ease;
+    }
+    .card:hover{
+      transform:translateY(-8px);
+      border-color:rgba(255,255,255,.18);
+    }
+    .icon-box{
+      width:60px;
+      height:60px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, rgba(124,92,255,.22), rgba(89,208,255,.18));
+      color:white;
+      margin-bottom:18px;
+      font-size:1.25rem;
+    }
+    .card h3{margin:0 0 10px; font-size:1.35rem}
+    .card p{margin:0; color:var(--muted); line-height:1.8}
+
+    .ecosystem{
+      position:relative;
+    }
+    .ecosystem-layout{
+      display:grid;
+      grid-template-columns:1fr 1.05fr;
+      gap:28px;
+      align-items:stretch;
+    }
+    .ecosystem-showcase{
+      display:grid;
+      gap:20px;
+    }
+    .feature-list{
+      display:grid;
+      gap:14px;
+      margin-top:24px;
+    }
+    .feature-item{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      padding:16px 18px;
+      border-radius:18px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .feature-item i{
+      margin-top:2px;
+      color:var(--accent);
+      font-size:1rem;
+    }
+    .feature-item strong{display:block; margin-bottom:6px}
+    .feature-item span{color:var(--muted); line-height:1.7; font-size:.95rem}
+
+    .device-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:18px;
+    }
+    .device-card{
+      position:relative;
+      min-height:240px;
+      overflow:hidden;
+      border-radius:24px;
+      border:1px solid var(--border);
+      background:var(--card);
+      box-shadow:var(--shadow);
+    }
+    .device-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .6s ease;
+    }
+    .device-card:hover img{transform:scale(1.08)}
+    .device-overlay{
+      position:absolute;
+      inset:auto 0 0 0;
+      padding:18px;
+      background:linear-gradient(to top, rgba(10,13,28,.9), rgba(10,13,28,.25));
+    }
+    .device-overlay h4{
+      margin:0 0 6px;
+      font-size:1.15rem;
+    }
+    .device-overlay p{
+      margin:0;
+      color:#ced6fb;
+      font-size:.93rem;
+      line-height:1.6;
+    }
+
+    .experience-wrap{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:26px;
+      align-items:center;
+    }
+    .experience-image{
+      position:relative;
+      min-height:580px;
+      border-radius:32px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      border:1px solid var(--border);
+      background:
+        linear-gradient(to top, rgba(9,11,24,.4), rgba(9,11,24,.12)),
+        url('https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
+    }
+    .experience-badge{
+      position:absolute;
+      left:24px;
+      bottom:24px;
+      right:24px;
+      padding:20px;
+      border-radius:24px;
+      background:rgba(14,18,40,.72);
+      border:1px solid rgba(255,255,255,.1);
+      backdrop-filter:blur(10px);
+    }
+    .experience-badge strong{
+      display:block;
+      margin-bottom:8px;
+      font-size:1.15rem;
+    }
+    .experience-badge span{
+      color:var(--muted);
+      line-height:1.75;
+      font-size:.95rem;
+    }
+    .experience-content .card{
+      padding:28px;
+    }
+    .timeline{
+      display:grid;
+      gap:16px;
+      margin-top:22px;
+    }
+    .timeline-item{
+      display:grid;
+      grid-template-columns:64px 1fr;
+      gap:16px;
+      align-items:start;
+      padding:16px;
+      border-radius:20px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .timeline-step{
+      width:64px;
+      height:64px;
+      border-radius:18px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, rgba(255,94,168,.2), rgba(124,92,255,.25));
+      font-weight:800;
+      color:white;
+    }
+    .timeline-item h4{
+      margin:4px 0 8px;
+      font-size:1.08rem;
+    }
+    .timeline-item p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.75;
+      font-size:.95rem;
+    }
+
+    .stats-panel{
+      margin-top:26px;
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:16px;
+    }
+    .stats-panel .card{
+      text-align:center;
+      padding:22px 16px;
+    }
+    .stats-panel h3{
+      margin:0 0 6px;
+      font-size:2rem;
+      background:linear-gradient(135deg, var(--accent), #fff, var(--secondary));
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+    }
+    .stats-panel p{
+      margin:0;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr .8fr;
+      grid-template-rows:240px 240px;
+      gap:18px;
+    }
+    .gallery-item{
+      position:relative;
+      overflow:hidden;
+      border-radius:26px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+    }
+    .gallery-item img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transition:transform .7s ease;
+    }
+    .gallery-item:hover img{transform:scale(1.07)}
+    .gallery-item:first-child{grid-row:1 / span 2}
+    .gallery-caption{
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:18px;
+      padding:16px 18px;
+      border-radius:18px;
+      background:rgba(12,16,38,.68);
+      border:1px solid rgba(255,255,255,.1);
+      backdrop-filter:blur(10px);
+    }
+    .gallery-caption strong{display:block; margin-bottom:4px}
+    .gallery-caption span{font-size:.92rem; color:#d8defd}
+
+    .cta-band{
+      padding:34px;
+      border-radius:34px;
+      background:
+        radial-gradient(circle at top left, rgba(89,208,255,.18), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(255,94,168,.18), transparent 26%),
+        linear-gradient(135deg, rgba(124,92,255,.18), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.1);
+      box-shadow:var(--shadow);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+    .cta-band h3{
+      margin:0 0 8px;
+      font-size:clamp(1.6rem, 3vw, 2.4rem);
+      letter-spacing:-.03em;
+    }
+    .cta-band p{
+      margin:0;
+      color:var(--muted);
+      max-width:620px;
+      line-height:1.8;
+    }
+
+    footer{
+      padding:40px 0 30px;
+      border-top:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.02);
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr .8fr .8fr;
+      gap:24px;
+      margin-bottom:26px;
+    }
+    .footer-col h4{
+      margin:0 0 14px;
+      font-size:1rem;
+    }
+    .footer-col p,
+    .footer-col a{
+      color:var(--muted);
+      line-height:1.9;
+      font-size:.95rem;
+    }
+    .footer-col a:hover{color:#fff}
+    .socials{
+      display:flex;
+      gap:12px;
+      margin-top:18px;
+    }
+    .socials a{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:14px;
+      background:rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      color:#dde4ff;
+      transition:.3s ease;
+    }
+    .socials a:hover{
+      transform:translateY(-2px);
+      background:linear-gradient(135deg, var(--primary), var(--secondary));
+      border-color:transparent;
+    }
+    .footer-bottom{
+      border-top:1px solid rgba(255,255,255,.08);
+      padding-top:20px;
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:.92rem;
+    }
+
+    .reveal{
+      opacity:0;
+      transform:translateY(40px);
+      transition:opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width: 1080px){
+      .hero-grid,
+      .ecosystem-layout,
+      .experience-wrap{
+        grid-template-columns:1fr;
+      }
+      .hero-panel{max-width:760px}
+      .trust-wrap{grid-template-columns:repeat(2, 1fr)}
+      .footer-grid{grid-template-columns:repeat(2, 1fr)}
+      .gallery-grid{
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:260px 220px 220px;
+      }
+      .gallery-item:first-child{
+        grid-column:1 / span 2;
+        grid-row:auto;
+      }
+    }
+
+    @media (max-width: 820px){
+      :root{--nav-h:72px}
+      .nav-links{
+        position:absolute;
+        top:calc(100% + 10px);
+        left:20px;
+        right:20px;
+        padding:18px;
+        border-radius:24px;
+        background:rgba(12,15,33,.92);
+        border:1px solid rgba(255,255,255,.08);
+        backdrop-filter:blur(12px);
+        flex-direction:column;
+        align-items:flex-start;
+        gap:14px;
+        transform-origin:top;
+        transform:scaleY(.9);
+        opacity:0;
+        visibility:hidden;
+        transition:.28s ease;
+      }
+      .nav-links.open{
+        opacity:1;
+        visibility:visible;
+        transform:scaleY(1);
+      }
+      .menu-toggle{display:grid; place-items:center}
+      .nav-actions .btn{display:none}
+      .hero{min-height:auto; padding-bottom:70px}
+      .grid-3,
+      .stats-panel,
+      .device-grid,
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+      .trust-wrap{grid-template-columns:1fr}
+      .gallery-grid{
+        grid-template-columns:1fr;
+        grid-template-rows:auto;
+      }
+      .gallery-item,
+      .gallery-item:first-child{
+        min-height:260px;
+        grid-column:auto;
+        grid-row:auto;
+      }
+      .section{padding:78px 0}
+      .hero-copy h1{max-width:100%}
+      .scene-card{min-height:420px}
+      .scene-card .floating-ui{position:static; width:100%; margin-bottom:18px}
+      .hero-stats{gap:12px}
+      .stat{flex:1}
+      .cta-band{padding:26px}
+    }
+
+    @media (max-width: 560px){
+      .container{width:min(var(--max), calc(100% - 24px))}
+      .hero-cta{flex-direction:column; align-items:stretch}
+      .btn{width:100%}
+      .timeline-item{grid-template-columns:1fr}
+      .timeline-step{width:56px; height:56px}
+      .section-head h2{font-size:2rem}
+      .hero-copy p{font-size:1rem}
+      .footer-bottom{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="header">
+    <div class="container nav">
+      <a href="#home" class="brand">
+        <span class="brand-mark"><i class="fa-solid fa-house-signal"></i></span>
+        <span>Auralux</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" class="active">Home</a>
+        <a href="#ecosystem">Ecosystem</a>
+        <a href="#experience">Experience Center</a>
+        <a href="#gallery">Spaces</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#experience" class="btn btn-secondary">Book a Visit</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow"><i class="fa-solid fa-wave-square"></i> Intelligent living, designed beautifully</span>
+          <h1>Smart Homes That Feel Effortless.</h1>
+          <p>
+            Auralux connects lighting, climate, security, audio, and energy into one seamless ecosystem. Build scenes that adapt to your rhythm, then explore them in person at our immersive experience centers.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#ecosystem" class="btn btn-primary"><i class="fa-solid fa-bolt"></i> Explore Ecosystem</a>
+            <a href="#experience" class="btn btn-secondary"><i class="fa-regular fa-calendar"></i> Visit Experience Center</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <h3>120+</h3>
+              <p>Connected devices across comfort, safety, and entertainment.</p>
+            </div>
+            <div class="stat">
+              <h3>24/7</h3>
+              <p>Real-time control, automation, and remote monitoring.</p>
+            </div>
+            <div class="stat">
+              <h3>15</h3>
+              <p>Flagship experience centers across major cities.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-panel reveal">
+          <div class="scene-card">
+            <div class="floating-ui">
+              <div class="mini-widget">
+                <small>Living Scene / Evening Arrival</small>
+                <div class="temp">
+                  <span>Ambient Climate</span>
+                  <span>22°C</span>
+                </div>
+                <div class="bars">
+                  <i style="--w:78%"></i>
+                  <i style="--w:65%"></i>
+                  <i style="--w:90%"></i>
+                </div>
+              </div>
+
+              <div class="mini-widget">
+                <small>Security Status</small>
+                <div class="temp">
+                  <span>Doors Locked</span>
+                  <span><i class="fa-solid fa-shield-halved"></i> Secure</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="scene-info">
+              <h3>One tap. A complete mood shift.</h3>
+              <p>
+                Lights dim, blinds close, music starts, and the thermostat adjusts automatically. Auralux scenes orchestrate every device in perfect sync.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-bar">
+      <div class="container">
+        <div class="trust-wrap reveal">
+          <div class="trust-item">
+            <i class="fa-solid fa-lightbulb"></i>
+            <div>
+              <strong>Adaptive Lighting</strong>
+              <span>Atmosphere that follows time and activity.</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <i class="fa-solid fa-temperature-three-quarters"></i>
+            <div>
+              <strong>Climate Intelligence</strong>
+              <span>Balanced comfort with predictive controls.</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+              <strong>Secure Entry</strong>
+              <span>Smart access with live alerts and automation.</span>
+            </div>
+          </div>
+          <div class="trust-item">
+            <i class="fa-solid fa-plug-circle-bolt"></i>
+            <div>
+              <strong>Energy Insight</strong>
+              <span>Track usage and optimize household efficiency.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow"><i class="fa-solid fa-sparkles"></i> Why Auralux</span>
+            <h2>Built for elegant automation and total control.</h2>
+          </div>
+          <p>
+            From intuitive app experiences to refined in-home hardware, every layer is crafted to reduce friction and elevate everyday rituals.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <div class="icon-box"><i class="fa-solid fa-mobile-screen-button"></i></div>
+            <h3>Unified Control</h3>
+            <p>Manage your full home ecosystem from a single interface with responsive dashboards, custom scenes, and voice-ready shortcuts.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon-box"><i class="fa-solid fa-brain"></i></div>
+            <h3>Context-Aware AI</h3>
+            <p>Learn household patterns, automate transitions, and personalize spaces using data-driven routines that feel naturally intuitive.</p>
+          </article>
+          <article class="card reveal">
+            <div class="icon-box"><i class="fa-solid fa-layer-group"></i></div>
+            <h3>Scalable by Design</h3>
+            <p>Start with one room or deploy across an entire villa. Auralux expands smoothly across apartments, houses, and hospitality spaces.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ecosystem" id="ecosystem">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow"><i class="fa-solid fa-cubes"></i> Product Ecosystem</span>
+            <h2>A connected product family for every room.</h2>
+          </div>
+          <p>
+            Lighting, sensors, locks, speakers, shades, and environmental controls all speak one language, creating precise, fluid, multi-device experiences.
+          </p>
+        </div>
+
+        <div class="ecosystem-layout">
+          <div class="card reveal">
+            <h3 style="margin:0 0 12px; font-size:1.7rem;">Designed as one system, not separate gadgets.</h3>
+            <p style="color:var(--muted); line-height:1.85; margin:0;">
+              The Auralux ecosystem is engineered around scene orchestration, low-latency response, and a refined visual language. Every device becomes more powerful when connected to the rest.
+            </p>
+
+            <div class="feature-list">
+              <div class="feature-item">
+                <i class="fa-solid fa-check"></i>
+                <div>
+                  <strong>Smart Lighting Arrays</strong>
+                  <span>Create layered illumination with tunable warmth, occupancy triggers, and cinematic presets.</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i class="fa-solid fa-check"></i>
+                <div>
+                  <strong>Entry and Security</strong>
+                  <span>Facial access, encrypted locks, live camera feeds, and instant alerts from a centralized hub.</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i class="fa-solid fa-check"></i>
+                <div>
+                  <strong>Comfort Control</strong>
+                  <span>Coordinate temperature, airflow, humidity, and air quality for spaces that always feel balanced.</span>
+                </div>
+              </div>
+              <div class="feature-item">
+                <i class="fa-solid fa-check"></i>
+                <div>
+                  <strong>Entertainment Scenes</strong>
+                  <span>Sync audio, lighting, and shades for movie mode, dinner hosting, focused work, and more.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ecosystem-showcase reveal">
+            <div class="device-grid">
+              <div class="device-card">
+                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80" alt="Smart lighting setup">
+                <div class="device-overlay">
+                  <h4>Auralux Glow</h4>
+                  <p>Modular lighting with scene presets and circadian tuning.</p>
+                </div>
+              </div>
+              <div class="device-card">
+                <img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1000&q=80" alt="Smart speaker device">
+                <div class="device-overlay">
+                  <h4>Auralux Echo</h4>
+                  <p>Spatial audio paired with room-aware acoustic calibration.</p>
+                </div>
+              </div>
+              <div class="device-card">
+                <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1000&q=80" alt="Smart kitchen and climate system">
+                <div class="device-overlay">
+                  <h4>Auralux Climate</h4>
+                  <p>Temperature, humidity, and airflow managed intelligently.</p>
+                </div>
+              </div>
+              <div class="device-card">
+                <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1000&q=80" alt="Smart lock and access">
+                <div class="device-overlay">
+                  <h4>Auralux Secure</h4>
+                  <p>Smart access, monitoring, and adaptive perimeter protection.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-panel">
+          <div class="card reveal">
+            <h3>99.9%</h3>
+            <p>System uptime backed by resilient local controls.</p>
+          </div>
+          <div class="card reveal">
+            <h3>1 App</h3>
+            <p>One elegant interface for every connected experience.</p>
+          </div>
+          <div class="card reveal">
+            <h3>8 ms</h3>
+            <p>Low-latency response for critical scene interactions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow"><i class="fa-solid fa-location-dot"></i> Experience Center</span>
+            <h2>Step into smart living before bringing it home.</h2>
+          </div>
+          <p>
+            Visit our immersive centers to test product ecosystems in realistic room setups, compare scenes, and design a tailored automation plan with specialists.
+          </p>
+        </div>
+
+        <div class="experience-wrap">
+          <div class="experience-image reveal">
+            <div class="experience-badge">
+              <strong>Immersive Demo Suites</strong>
+              <span>
+                Explore living rooms, kitchens, bedrooms, and private theater concepts with live device orchestration, responsive lighting, and integrated control experiences.
+              </span>
+            </div>
+          </div>
+
+          <div class="experience-content">
+            <div class="card reveal">
+              <h3 style="margin:0 0 10px; font-size:1.7rem;">What happens during a visit</h3>
+              <p style="margin:0; color:var(--muted); line-height:1.85;">
+                Each visit is hands-on and personalized. Our consultants walk you through smart scenes, product combinations, installation options, and room-specific recommendations.
+              </p>
+
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="timeline-step">01</div>
+                  <div>
+                    <h4>Needs Discovery</h4>
+                    <p>Share your space, routines, and design preferences to identify the right automation layers and hardware combinations.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-step">02</div>
+                  <div>
+                    <h4>Live Scene Walkthrough</h4>
+                    <p>Experience morning, hosting, movie, security, and sleep modes in a fully controlled demonstration environment.</p>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-step">03</div>
+                  <div>
+                    <h4>Tailored Solution Plan</h4>
+                    <p>Leave with a suggested setup, installation roadmap, and product bundle tailored to your home or project.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top:24px;">
+                <a href="#contact" class="btn btn-primary"><i class="fa-regular fa-paper-plane"></i> Schedule Your Visit</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="eyebrow"><i class="fa-solid fa-camera-retro"></i> Spaces</span>
+            <h2>Smart scenes across modern, expressive interiors.</h2>
+          </div>
+          <p>
+            Discover how Auralux integrates into residential and lifestyle spaces with understated hardware, premium finishes, and responsive automation.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1400&q=80" alt="Luxury smart living room">
+            <div class="gallery-caption">
+              <strong>Living Room Harmony</strong>
+              <span>Layered light, media scenes, and climate control tuned for relaxation and hosting.</span>
+            </div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=900&q=80" alt="Smart kitchen area">
+            <div class="gallery-caption">
+              <strong>Kitchen Flow</strong>
+              <span>Task lighting, appliance status, and ambient presets for everyday moments.</span>
+            </div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=900&q=80" alt="Smart bedroom">
+            <div class="gallery-caption">
+              <strong>Bedroom Calm</strong>
+              <span>Sleep routines with gentle dimming, shade control, and comfort balancing.</span>
+            </div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80" alt="Smart lounge experience">
+            <div class="gallery-caption">
+              <strong>Evening Lounge</strong>
+              <span>A cinematic atmosphere with one-touch transitions and immersive sound.</span>
+            </div>
+          </div>
+          <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=900&q=80" alt="Lighting and decor system">
+            <div class="gallery-caption">
+              <strong>Architectural Lighting</strong>
+              <span>Accent lines and dynamic scenes that shape depth, warmth, and character.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="cta-band reveal">
+          <div>
+            <h3>Ready to design your intelligent home?</h3>
+            <p>
+              Connect with Auralux to explore product bundles, request a consultation, or book a visit to the nearest experience center.
+            </p>
+          </div>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="mailto:hello@auraluxhome.com" class="btn btn-primary"><i class="fa-solid fa-envelope"></i> hello@auraluxhome.com</a>
+            <a href="tel:+10000000000" class="btn btn-secondary"><i class="fa-solid fa-phone"></i> +1 (000) 000-0000</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="#home" class="brand" style="margin-bottom:10px;">
+            <span class="brand-mark"><i class="fa-solid fa-house-signal"></i></span>
+            <span>Auralux</span>
+          </a>
+          <p>
+            Intelligent home technology with premium design language, immersive product experiences, and a seamlessly connected ecosystem.
+          </p>
+          <div class="socials">
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Products</h4>
+          <p><a href="#ecosystem">Lighting</a></p>
+          <p><a href="#ecosystem">Climate</a></p>
+          <p><a href="#ecosystem">Security</a></p>
+          <p><a href="#ecosystem">Audio</a></p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Experience</h4>
+          <p><a href="#experience">Book a Visit</a></p>
+          <p><a href="#gallery">Showcase Spaces</a></p>
+          <p><a href="#features">Why Auralux</a></p>
+          <p><a href="#contact">Consultation</a></p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>88 Nova Avenue, Design District</p>
+          <p>hello@auraluxhome.com</p>
+          <p>+1 (000) 000-0000</p>
+          <p>Mon–Sat / 10:00–19:00</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2025 Auralux Smart Home. All rights reserved.</span>
+        <span>Privacy · Terms · Experience-led smart living</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('header');
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+    const sections = document.querySelectorAll('section[id]');
+    const revealEls = document.querySelectorAll('.reveal');
+
+    function handleHeader() {
+      if (window.scrollY > 16) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      const icon = menuToggle.querySelector('i');
+      icon.className = navLinks.classList.contains('open')
+        ? 'fa-solid fa-xmark'
+        : 'fa-solid fa-bars';
+    });
+
+    navAnchors.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        const icon = menuToggle.querySelector('i');
+        icon.className = 'fa-solid fa-bars';
+      });
+    });
+
+    function setActiveLink() {
+      let current = 'home';
+      sections.forEach(section => {
+        const top = section.offsetTop - 120;
+        const height = section.offsetHeight;
+        if (window.scrollY >= top && window.scrollY < top + height) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navAnchors.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    window.addEventListener('scroll', () => {
+      handleHeader();
+      setActiveLink();
+    });
+
+    window.addEventListener('load', () => {
+      handleHeader();
+      setActiveLink();
+    });
+  </script>
+</body>
+</html>
